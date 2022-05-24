@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createTutorial } from "../slices/tutorials";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createTutorial } from '../slices/tutorials';
 
 const AddTutorial = () => {
   const initialTutorialState = {
     id: null,
-    title: "",
-    description: "",
-    published: false
+    title: '',
+    description: '',
+    published: false,
   };
   const [tutorial, setTutorial] = useState(initialTutorialState);
   const [submitted, setSubmitted] = useState(false);
 
   const dispatch = useDispatch();
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setTutorial({ ...tutorial, [name]: value });
   };
@@ -24,17 +24,17 @@ const AddTutorial = () => {
 
     dispatch(createTutorial({ title, description }))
       .unwrap()
-      .then(data => {
+      .then((data) => {
         console.log(data);
         setTutorial({
           id: data.id,
           title: data.title,
           description: data.description,
-          published: data.published
+          published: data.published,
         });
         setSubmitted(true);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
@@ -50,13 +50,13 @@ const AddTutorial = () => {
         <div>
           <h4>You submitted successfully!</h4>
           <button className="btn btn-success" onClick={newTutorial}>
-            Add
+            Create Employee
           </button>
         </div>
       ) : (
         <div>
           <div className="form-group">
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title">Name</label>
             <input
               type="text"
               className="form-control"
